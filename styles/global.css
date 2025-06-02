@@ -2,12 +2,18 @@
     font-family: sans-serif;
     --c-darkest: #333333;
     --c-dark: #505050;
+    --c-grey: #969696;
     --c-primary: #F3AC43;
     --c-secondary: #F7D5A2;
     --c-light: #EBEBEB;
+    --c-lightest: #F6F6F6;
     --c-accent: #8337E1;
     color: var(--c-light);
     font-size: inherit;
+    ::selection {
+        color: var(--c-light);
+        background: var(--c-accent);
+    }
 }
 
 a {
@@ -21,16 +27,16 @@ a:hover {
 
 body {
     background-color: var(--c-darkest);
-    min-height: max-content;
     margin: 0pt;
 }
 
 header {
     padding: 5pt 0pt;
     background-color: var(--c-secondary);
+    min-width: fit-content;
 
     * {
-        margin: 0;
+        margin: 0; /* removes default margins from text */
     }
 
     .navbar {
@@ -42,21 +48,52 @@ header {
         flex-direction: row;
         justify-content: space-between;
         font-size: 16pt;
+        user-select: none;
 
-        h1 {
+        a.logo {
             display: inline-block;
             padding: 8pt 15pt;
             background-color: var(--c-primary);
             border-radius: 50%;
             width: fit-content;
-            color: #F6F6F6;
+            margin: 0pt;
+
+            h1 {
+                color: var(--c-lightest);
+            }
         } .links .dropdown-container {
             display: inline-block;
         } a {
             display: inline-block;
             margin: 8pt;
+        } .dropdown-content {
+            a {
+                display: block;
+                margin: 0pt;
+                padding: 6pt 8pt;
+            }
+            a:hover {
+                background-color: var(--c-accent);
+                color: var(--c-light);
+            }
         }
     }
+}
+
+.dropdown-container {
+    position: relative;
+
+    .dropdown-content {
+        display: none;
+        font-size: 12pt;
+        position: absolute;
+        z-index: 1;
+        background-color: var(--c-primary);
+    }
+}
+
+.dropdown-container:hover .dropdown-content {
+    display: block;
 }
 
 .page-content {
@@ -72,7 +109,13 @@ footer {
     width: 100%;
     font-size: 10pt;
     * {
-        color: #969696;
+        color: var(--c-grey);
+    }
+    a {
+        color: var(--c-secondary);
+    }
+    a:hover {
+        color: var(--c-primary);
     }
     .footer-items {
         width: fit-content;
